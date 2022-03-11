@@ -1,22 +1,16 @@
 # Warehouse
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `warehouse` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:warehouse, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/warehouse](https://hexdocs.pm/warehouse).
-
 # pg-warehouse-supervisor
+
+# How to run:-
+  1. iex -S mix
+  2. packages = Warehouse.Package.random_batch(50)
+  3. Warehouse.Receiver.receive_packages(packages)
+
+# To check the state of DeliveratorPool module:-
+  4. :sys.get_state(Warehouse.DeliveratorPool)
+  5. deliver = :sys.get_state(Warehouse.Receiver)
+
+# To check all the packages delivered successfully:-
+  6. packages |> Enum.sort_by(&(&1.id)) == deliver.delivered_packages |> Enum.sort_by(&(&1.id))
+  
